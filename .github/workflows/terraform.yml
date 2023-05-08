@@ -103,5 +103,7 @@ jobs:
       - name: Terraform Apply
         if: github.ref == 'refs/heads/main' 
           && github.event.issue.pull_request && contains(github.event.comment.body, '@bot apply')
-        run: terraform apply -auto-approve -input=false
+        run: |
+          #terraform apply -auto-approve -input=false
+          echo "This is terraform apply"
 
