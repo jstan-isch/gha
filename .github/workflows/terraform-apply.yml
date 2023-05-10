@@ -53,7 +53,7 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
 
       - name: expand log
-        run: gh run view --job jobs.plan_and_apply --log-failed
+        run: gh run view --job plan_and_apply --log-failed
       
       - name: Initialize Terraform
         run: |
