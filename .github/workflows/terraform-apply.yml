@@ -30,8 +30,8 @@ jobs:
       matrix:
         path:
           - dev
-          - stage
-          - prod
+#           - stage
+#           - prod
 
     steps:
       - name: Check out code
@@ -44,11 +44,14 @@ jobs:
 
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v1
+        continue-on-error: true
         with:
           aws-region: us-east-1
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
 
+      - name: expand log
+        run: gh run view --job jobs.plan_and_apply --log-failed
       - name: Initialize Terraform
         run: |
           cd terraform/${{ matrix.path }}
