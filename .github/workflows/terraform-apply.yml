@@ -25,6 +25,7 @@ jobs:
     name: Plan and Apply
     env:
       TF_VAR_allowed_account_id: ${{ secrets.ALLOWED_ACCOUNT_ID }}
+      GH_TOKEN: ${{ github.token }}
     runs-on: ubuntu-20.04
     strategy:
       fail-fast: false
