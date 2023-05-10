@@ -52,6 +52,7 @@ jobs:
 
       - name: expand log
         run: gh run view --job jobs.plan_and_apply --log-failed
+      
       - name: Initialize Terraform
         run: |
           cd terraform/${{ matrix.path }}
