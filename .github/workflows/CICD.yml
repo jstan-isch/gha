@@ -16,6 +16,8 @@ jobs:
         run: |
           echo "pwd: $(pwd)"
           echo "workspace: ${{github.workspace}}"
+          echo "This is the ls command"
+          ls ${{github.workspace}}/
           find . -name "README.md" -type f -print
           ls -la README.md
     
