@@ -16,7 +16,8 @@ jobs:
         run: |
           echo "pwd: $(pwd)"
           echo "workspace: ${{github.workspace}}"
-          echo ${github.workspace}
+          ls
+          ls -la README.md
     
   DeployDev:
     name: Deploy to Dev 
