@@ -21,6 +21,9 @@ jobs:
             ***Running terraform apply***
             Results will display here momentarily... 
       
+      - name: checkout
+        uses: actions/checkout@v3
+      
       - name: drift
         run: |
           message=$(cat tfplan.json | jq -r 'select(.type == "resourceO_drift")."@message"' | tr -d '"')
