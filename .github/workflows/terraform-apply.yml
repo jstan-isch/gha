@@ -26,7 +26,7 @@ jobs:
       
       - name: drift
         run: |
-          message=$(cat tfplan.json | jq -r 'select(.type == "resourceO_drift")."@message"' | tr -d '"')
+          message=$(cat tfplan.json | jq -r 'select(.type == "resource_drift")."@message"' | tr -d '"')
           if [[ -n $message ]]; then
             echo "$message"
           fi
