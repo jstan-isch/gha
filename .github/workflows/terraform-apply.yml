@@ -28,6 +28,7 @@ jobs:
         run: |
           echo "::group::eval"
           cat tfplan.json > plan.json
+          echo plan.json
           message=$(cat plan.json | jq -r 'select(.type == "resource_drift")."@message"' | tr -d '"')
           if [[ -n $message ]]; then
             echo "$message"
