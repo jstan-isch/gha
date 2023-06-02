@@ -25,6 +25,8 @@ jobs:
         uses: actions/checkout@v3
       
       - name: drift
+        env: 
+          github_repo: ${{ github.event.repository.name }}
         run: |
           echo "::group::eval"
           cat tfplan.json > plan.json
