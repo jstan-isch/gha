@@ -31,7 +31,30 @@ jobs:
 #           role-to-assume: ${{ secrets.AWS_ROLE }}
 #           aws-region: ${{ secrets.AWS_REGION }}
 #           role-session-name: GitHub-OIDC-TERRAFORM
-
+      
+      - name: print the check run ID
+        env: { check_run_id: '${{ github.run_id }}' }
+        run: echo "${{ github.run_id }}" 
+          
+      - name: status change
+        run: npm install @octokit/rest
+        
+      - name: processing status report
+        run: |
+          const { octokit } = require('@octokit/rest')
+          
+          const octokit = new Octokit({
+            auth: process.env.GITHUB_TOKEN
+          });
+          
+          await octokit.checks.update({
+            owner: 'jstan-isch'
+            repo: 'gha'
+            check_run_id: ${{ env.check_run_id }}
+            status: 'in_progress',
+            
+          });
+      
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v2
         with:
