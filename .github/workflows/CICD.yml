@@ -13,7 +13,13 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Compile
-        run: echo Hello, world!
+        run: |
+          echo "pwd: $(pwd)"
+          echo "workspace: ${{github.workspace}}"
+          echo "This is the ls command"
+          ls ${{github.workspace}}/
+          find . -name "README.md" -type f -print
+          ls -la README.md
     
   DeployDev:
     name: Deploy to Dev 
