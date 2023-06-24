@@ -42,19 +42,18 @@ jobs:
       - name: processing status report
         run: |
           const { Octokit } = require('@octokit/rest');
-          
+
           const octokit = new Octokit({
-            auth: process.env.GITHUB_TOKEN
+            auth: process.env.GITHUB_TOKEN,
           });
           
           await octokit.checks.update({
-            owner: 'jstan-isch'
-            repo: 'gha'
-            check_run_id: ${{ env.check_run_id }}
-            status: 'in_progress',
-            
+          owner: 'your-username',
+          repo: 'your-repository',
+          check_run_id: YOUR_CHECK_RUN_ID,
+          status: 'in_progress',
           });
-      
+        
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v2
         with:
