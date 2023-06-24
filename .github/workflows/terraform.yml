@@ -41,7 +41,7 @@ jobs:
         
       - name: processing status report
         run: |
-          const { Octokit } = require('@octokit/rest')
+          const { Octokit } = require('@octokit/rest');
           
           const octokit = new Octokit({
             auth: process.env.GITHUB_TOKEN
