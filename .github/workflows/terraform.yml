@@ -42,11 +42,12 @@ jobs:
       - name: processing status report
         uses: actions/github-script@v6
         with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
             const { Octokit } = require('@octokit/rest')
 
             const octokit = new Octokit({
-              auth: process.env.GITHUB_TOKEN
+              auth: github-token
             });
 
             await octokit.checks.update({
