@@ -46,14 +46,14 @@ jobs:
             const { Octokit } = require('@octokit/rest')
 
             const octokit = new Octokit({
-              auth: ${{ secrets.MY_SECRET }}
+              auth: process.env.GITHUB_TOKEN
             });
 
             await octokit.checks.update({
             owner: 'jstan-isch',
             repo: 'gha',
             check_run_id: ${{ env.check_run_id }},
-            status: 'in_progress',
+            status: 'in_progress'
             })
         
       - name: Setup Terraform
