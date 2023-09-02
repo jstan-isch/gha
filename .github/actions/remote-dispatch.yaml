@@ -1,0 +1,34 @@
+name: 'Repository Dispatch'
+description: 'Trigger a workflow from a remote repository'
+inputs:
+  owner: # id of input
+    description: 'Owner of the repository to dispatch to'
+    type: string
+    default: 'jstan-isch'
+  repo: 
+    description: 'Repository to dispatch to'
+    type: string
+    required: true
+  # payload: 
+  #   description: 'JSON payload to send with the event'
+  #   type: string
+  #   default: '{}'
+#   vault_env: 
+#     description: 'Vault environment'
+#     type: string
+#   target_repo:
+#     description: 'Prometheus Configs repository'
+#     default: 'jstan-isch/test'
+#     type: string
+#   secret_path:
+#     description: 'Vault Github secret path'  
+#     type: string
+#   secret_key:
+#     description: 'Vault secret key'  
+#     type: string
+# outputs:
+#   time: # id of output
+#     description: 'The time we greeted you'
+runs:
+  using: 'node16'
+  main: 'index.js'
