@@ -6,9 +6,9 @@ on:
       version:
         required: true
         type: string
-    secrets:
-      token:
-        required: true
+    # secrets:
+    #   token:
+    #     required: true
       
       # dest:
       #   required: true
@@ -37,7 +37,8 @@ jobs:
           git config --global user.name "jstan-isch"
           git add version_file
           git commit -m "Version update ${{ inputs.version }}"
-          git push origin HEAD
+          git push
+          # git push origin HEAD
 
       # - name: commit the data
       #   uses: EndBug/add-and-commit@v9 
