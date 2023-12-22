@@ -26,6 +26,8 @@ jobs:
             cat version_file
 
       - name: commit 
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           git config --global user.email "stanleyikegwuonu@gmail.com"
           git config --global user.name "jstan-isch"
