@@ -15,14 +15,6 @@ on:
       install_podmonitors:
         type: boolean
         default: false
-  
-    # secrets:
-    #   token:
-    #     required: true
-      
-      # dest:
-      #   required: true
-      #   type: string
 
 jobs:
   data-fetch:
@@ -37,15 +29,14 @@ jobs:
       - name: sort
         run: |
           declare -A input_values=(
-              ["install_alertmanagerconfigs"]=${{ inputs.install_alertmanagerconfigs }}
-              ["install_alertmanagers"]=${{ inputs.install_alertmanagers }}
-              ["install_podmonitors"]=${{ inputs.install_podmonitors }}
+            ["alertmanagerconfigs"]=${{ inputs.install_alertmanagerconfigs }}
+            ["alertmanagers"]=${{ inputs.install_alertmanagers }}
+            ["podmonitors"]=${{ inputs.install_podmonitors }}
           )
 
           for key in "${!input_values[@]}"; do
             if [ "${input_values[$key]}" == true ]; then
-              echo "$key: ${input_values[$key]}"
-              curl -sS https://raw.githubusercontent.com/prometheus-operator/prometheus-operator/v0.70.0/example/prometheus-operator-crd/monitoring.coreos.com_"$key".yaml >> "crd_$key.yaml"
+              curl -sS https://raw.githubusercontent.com/prometheus-operator/prometheus-operator/v0.70.0/example/prometheus-operator-crd/monitoring.coreos.com_"$key".yaml > "crd_$key.yaml"
             fi
           done
         
