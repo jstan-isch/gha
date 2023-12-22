@@ -1,0 +1,20 @@
+name: call-crdversion
+
+on:
+  workflow_dispatch:
+    inputs: 
+      version: 
+
+jobs:
+  call-workflow-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+            ref: ${{ github.head_ref }}
+            fetch-depth: 0
+      - name: call-the-version-workflow
+        uses: ./.github/workflows/crdversion.yaml
+        with:
+          version: 0.70.0
+          
