@@ -6,9 +6,9 @@ on:
       version:
         required: true
         type: string
-      dest:
-        required: true
-        type: string
+      # dest:
+      #   required: true
+      #   type: string
 
 jobs:
   data-fetch:
