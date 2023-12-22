@@ -66,7 +66,7 @@ jobs:
         run: |
           git config --global user.email "stanleyikegwuonu@gmail.com"
           git config --global user.name "jstan-isch"
-          git add version_file
+          git add -A
           git commit -m "crd version update - v${{ inputs.version }}"
           git push
           # git push origin HEAD
