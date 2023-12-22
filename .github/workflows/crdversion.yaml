@@ -26,7 +26,7 @@ jobs:
             cat version_file
 
       - run: |
-          git add new-file.txt
+          git add version_file
           git commit -m "Version update ${{ inputs.version }}"
           git push origin HEAD
 
