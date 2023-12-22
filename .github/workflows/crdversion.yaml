@@ -23,6 +23,7 @@ jobs:
       - name: download the CRD
         run: |
             curl -sS https://raw.githubusercontent.com/prometheus-operator/prometheus-operator/v${{ inputs.version }}/example/prometheus-operator-crd/monitoring.coreos.com_alertmanagerconfigs.yaml > version_file
+            cat version_file
 
       - name: commit the data
         uses: EndBug/add-and-commit@v9 
