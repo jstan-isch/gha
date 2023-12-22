@@ -51,13 +51,14 @@ jobs:
       #     # curl -sS https://raw.githubusercontent.com/prometheus-operator/prometheus-operator/v${{ inputs.version }}/example/prometheus-operator-crd/monitoring.coreos.com_podmonitors.yaml > version_file
       #     # cat version_file
       - name: check changes
+        id: check_changes
         run: |
             if [[ -n "$(git status --porcelain)" ]]; then
               echo "There are changes."
-              echo "::set-output name=has_changes::true"
+              echo "has_changes=true" >> $GITHUB_ENV
             else
               echo "No changes detected. Exiting."
-              echo "::set-output name=has_changes::false"
+              echo "has_changes=false" >> $GITHUB_ENV
               exit 0
             fi
 
