@@ -11,7 +11,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-            ref: ${{ github.head_ref }}
+            # ref: ${{ github.head_ref }}
             fetch-depth: 0
       - name: call-the-version-workflow
         uses: ./.github/workflows/crdversion.yaml
