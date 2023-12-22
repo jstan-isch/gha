@@ -37,21 +37,30 @@ jobs:
       - name: sort
         run: |
           declare -A input_values=(
-              ["install_alertmanagerconfigs"]=${{ install_alertmanagerconfigs }}
-              ["install_alertmanagers"]=${{ install_alertmanagers }}
-              ["install_podmonitors"]=${{ install_podmonitors }}
+              ["install_alertmanagerconfigs"]=${{ inputs.install_alertmanagerconfigs }}
+              ["install_alertmanagers"]=${{ inputs.install_alertmanagers }}
+              ["install_podmonitors"]=${{ inputs.install_podmonitors }}
           )
-        
-      - name: download the CRD
-        run: |
+
           for key in "${!input_values[@]}"; do
             if [ "${input_values[$key]}" == true ]; then
-                # echo "$key: ${input_values[$key]}"
-                curl -sS https://raw.githubusercontent.com/prometheus-operator/prometheus-operator/v${{ inputs.version }}/example/prometheus-operator-crd/monitoring.coreos.com_"$key".yaml >> version_file
+              # echo "$key: ${input_values[$key]}"
+              curl -sS https://raw.githubusercontent.com/prometheus-operator/prometheus-operator/v${{ inputs.version }}/example/prometheus-operator-crd/monitoring.coreos.com_"$key".yaml >> version_file
+            else
+              exit 0
             fi
           done
-          # curl -sS https://raw.githubusercontent.com/prometheus-operator/prometheus-operator/v${{ inputs.version }}/example/prometheus-operator-crd/monitoring.coreos.com_podmonitors.yaml > version_file
-          # cat version_file
+        
+      # - name: download the CRD
+      #   run: |
+      #     for key in "${!input_values[@]}"; do
+      #       if [ "${input_values[$key]}" == true ]; then
+      #           # echo "$key: ${input_values[$key]}"
+      #           curl -sS https://raw.githubusercontent.com/prometheus-operator/prometheus-operator/v${{ inputs.version }}/example/prometheus-operator-crd/monitoring.coreos.com_"$key".yaml >> version_file
+      #       fi
+      #     done
+      #     # curl -sS https://raw.githubusercontent.com/prometheus-operator/prometheus-operator/v${{ inputs.version }}/example/prometheus-operator-crd/monitoring.coreos.com_podmonitors.yaml > version_file
+      #     # cat version_file
 
       - name: commit 
         # env:
