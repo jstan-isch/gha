@@ -6,6 +6,16 @@ on:
       version:
         required: true
         type: string
+      install_alertmanagerconfigs:
+        type: boolean
+        default: false
+      install_alertmanagers:
+        type: boolean
+        default: false
+      install_podmonitors:
+        type: boolean
+        default: false
+  
     # secrets:
     #   token:
     #     required: true
@@ -25,8 +35,9 @@ jobs:
             fetch-depth: 0 
         
       - name: download the CRD
+        if: ${{ inputs.install_podmonitors == true }}
         run: |
-            curl -sS https://raw.githubusercontent.com/prometheus-operator/prometheus-operator/v${{ inputs.version }}/example/prometheus-operator-crd/monitoring.coreos.com_alertmanagerconfigs.yaml > version_file
+            curl -sS https://raw.githubusercontent.com/prometheus-operator/prometheus-operator/v${{ inputs.version }}/example/prometheus-operator-crd/monitoring.coreos.com_podmonitors.yaml > version_file
             cat version_file
 
       - name: commit 
