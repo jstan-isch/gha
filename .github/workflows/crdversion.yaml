@@ -36,7 +36,7 @@ jobs:
           git config --global user.email "stanleyikegwuonu@gmail.com"
           git config --global user.name "jstan-isch"
           git add version_file
-          git commit -m "CRD Version Update - v${{ inputs.version }}"
+          git commit -m "crd version update - v${{ inputs.version }}"
           git push
           # git push origin HEAD
 
