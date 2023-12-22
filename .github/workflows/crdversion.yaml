@@ -6,13 +6,13 @@ on:
       version:
         required: true
         type: string
-      install_alertmanagerconfigs:
+      crd_alertmanagerconfigs:
         type: boolean
         default: false
-      install_alertmanagers:
+      crd_alertmanagers:
         type: boolean
         default: false
-      install_podmonitors:
+      crd_podmonitors:
         type: boolean
         default: false
 
@@ -29,9 +29,9 @@ jobs:
       - name: sort
         run: |
           declare -A input_values=(
-            ["alertmanagerconfigs"]=${{ inputs.install_alertmanagerconfigs }}
-            ["alertmanagers"]=${{ inputs.install_alertmanagers }}
-            ["podmonitors"]=${{ inputs.install_podmonitors }}
+            ["alertmanagerconfigs"]=${{ inputs.crd_alertmanagerconfigs }}
+            ["alertmanagers"]=${{ inputs.crd_alertmanagers }}
+            ["podmonitors"]=${{ inputs.crd_podmonitors }}
           )
 
           for key in "${!input_values[@]}"; do
