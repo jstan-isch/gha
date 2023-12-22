@@ -33,16 +33,29 @@ jobs:
         with:
             ref: ${{ github.head_ref }}
             fetch-depth: 0 
+
+      - name: sort
+        run: |
+          declare -A input_values=(
+              ["install_alertmanagerconfigs"]=${{ install_alertmanagerconfigs }}
+              ["install_alertmanagers"]=${{ install_alertmanagers }}
+              ["install_podmonitors"]=${{ install_podmonitors }}
+          )
         
       - name: download the CRD
-        if: ${{ inputs.install_* == true }}
         run: |
-            curl -sS https://raw.githubusercontent.com/prometheus-operator/prometheus-operator/v${{ inputs.version }}/example/prometheus-operator-crd/monitoring.coreos.com_podmonitors.yaml > version_file
-            cat version_file
+          for key in "${!input_values[@]}"; do
+            if [ "${input_values[$key]}" == true ]; then
+                # echo "$key: ${input_values[$key]}"
+                curl -sS https://raw.githubusercontent.com/prometheus-operator/prometheus-operator/v${{ inputs.version }}/example/prometheus-operator-crd/monitoring.coreos.com_"$key".yaml >> version_file
+            fi
+          done
+          # curl -sS https://raw.githubusercontent.com/prometheus-operator/prometheus-operator/v${{ inputs.version }}/example/prometheus-operator-crd/monitoring.coreos.com_podmonitors.yaml > version_file
+          # cat version_file
 
       - name: commit 
-        env:
-          GH_TOKEN: ${{ secrets.token }}
+        # env:
+        #   GH_TOKEN: ${{ secrets.token }}
         run: |
           git config --global user.email "stanleyikegwuonu@gmail.com"
           git config --global user.name "jstan-isch"
