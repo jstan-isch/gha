@@ -25,7 +25,10 @@ jobs:
             curl -sS https://raw.githubusercontent.com/prometheus-operator/prometheus-operator/v${{ inputs.version }}/example/prometheus-operator-crd/monitoring.coreos.com_alertmanagerconfigs.yaml > version_file
             cat version_file
 
-      - run: |
+      - name: commit 
+        run: |
+          git config --global user.email "stanleyikegwuonu@gmail.com"
+          git config --global user.name "jstan-isch"
           git add version_file
           git commit -m "Version update ${{ inputs.version }}"
           git push origin HEAD
