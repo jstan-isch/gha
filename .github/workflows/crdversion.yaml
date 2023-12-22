@@ -63,7 +63,7 @@ jobs:
             fi
 
       - name: Commit Changes
-        if: steps.check_changes.outputs.has_changes == 'true'
+        if: env.has_changes == 'true'
         run: |
           git config --global user.email "stanleyikegwuonu@gmail.com"
           git config --global user.name "jstan-isch"
