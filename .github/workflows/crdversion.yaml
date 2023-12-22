@@ -35,7 +35,7 @@ jobs:
             fetch-depth: 0 
         
       - name: download the CRD
-        if: ${{ inputs.install_podmonitors == true }}
+        if: ${{ inputs.install_* == true }}
         run: |
             curl -sS https://raw.githubusercontent.com/prometheus-operator/prometheus-operator/v${{ inputs.version }}/example/prometheus-operator-crd/monitoring.coreos.com_podmonitors.yaml > version_file
             cat version_file
