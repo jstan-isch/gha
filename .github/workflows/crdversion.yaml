@@ -15,6 +15,27 @@ on:
       crd_podmonitors:
         type: boolean
         default: false
+      crd_probes:
+        type: boolean
+        default: false
+      crd_prometheusagents:
+        type: boolean
+        default: false
+      crd_prometheuses:
+        type: boolean
+        default: false
+      crd_prometheusrules:
+        type: boolean
+        default: false
+      crd_scrapeconfigs:
+        type: boolean
+        default: false
+      crd_servicemonitors:
+        type: boolean
+        default: false
+      crd_thanosrulers:
+        type: boolean
+        default: false
 
 jobs:
   data-fetch:
@@ -40,16 +61,6 @@ jobs:
             fi
           done
         
-      # - name: download the CRD
-      #   run: |
-      #     for key in "${!input_values[@]}"; do
-      #       if [ "${input_values[$key]}" == true ]; then
-      #           # echo "$key: ${input_values[$key]}"
-      #           curl -sS https://raw.githubusercontent.com/prometheus-operator/prometheus-operator/v${{ inputs.version }}/example/prometheus-operator-crd/monitoring.coreos.com_"$key".yaml >> version_file
-      #       fi
-      #     done
-      #     # curl -sS https://raw.githubusercontent.com/prometheus-operator/prometheus-operator/v${{ inputs.version }}/example/prometheus-operator-crd/monitoring.coreos.com_podmonitors.yaml > version_file
-      #     # cat version_file
       - name: check changes
         id: check_changes
         run: |
