@@ -68,6 +68,7 @@ jobs:
       #     # git push origin HEAD
 
       - name: commit Changes
+        if: env.has_changes == 'true'
         uses: EndBug/add-and-commit@v9 
         with: 
           message: "crd version upgrade - v${{ inputs.version }}"
