@@ -52,8 +52,8 @@ jobs:
             ["podmonitors"]=${{ inputs.crd_podmonitors }}
             ["probes"]=${{ inputs.crd_probes }}
             ["prometheuses"]=${{ inputs.crd_prometheuses }}
-            ["prometheusrules]=${{ inputs.crd_prometheusrules }}
-            ["scrapeconfigs]=${{ inputs.crd_scrapeconfigs }}
+            ["prometheusrules"]=${{ inputs.crd_prometheusrules }}
+            ["scrapeconfigs"]=${{ inputs.crd_scrapeconfigs }}
             ["servicemonitors"]=${{ inputs.crd_servicemonitors }}
             ["thanosrulers"]=${{ inputs.crd_thanosrulers }}
           )
