@@ -59,12 +59,12 @@ jobs:
           )
 
           for key in "${!input_values[@]}"; do
+          echo $key
             if [ "${input_values[$key]}" == true ]; then
+              echo $key
               curl -sS https://raw.githubusercontent.com/prometheus-operator/prometheus-operator/v${{ inputs.version }}/example/prometheus-operator-crd/monitoring.coreos.com_"$key".yaml > "crd_$key.yaml"
             fi
           done
-
-          cat "crd_$key.yaml"
         
       - name: check changes
         id: check_changes
