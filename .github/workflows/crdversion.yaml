@@ -18,9 +18,6 @@ on:
       crd_probes:
         type: boolean
         default: false
-      crd_prometheusagents:
-        type: boolean
-        default: false
       crd_prometheuses:
         type: boolean
         default: false
@@ -53,6 +50,13 @@ jobs:
             ["alertmanagerconfigs"]=${{ inputs.crd_alertmanagerconfigs }}
             ["alertmanagers"]=${{ inputs.crd_alertmanagers }}
             ["podmonitors"]=${{ inputs.crd_podmonitors }}
+            ["probes"]=${{ inputs.crd_probes }}
+            ["prometheusagents"]=${{ inputs.crd_prometheusagents }}
+            ["prometheuses"]=${{ inputs.crd_prometheuses }}
+            ["prometheusrules]=${{ inputs.crd_probes }}
+            ["scrapeconfigs]=${{ inputs.crd_probes }}
+            ["servicemonitors"]=${{ inputs.crd_servicemonitors }}
+            ["thanosrulers"]=${{ inputs.crd_thanosrulers }}
           )
 
           for key in "${!input_values[@]}"; do
