@@ -40,8 +40,8 @@ jobs:
 
           for key in "${!input_values[@]}"; do
             if [ "${input_values[$key]}" == true ]; then
-              yq 'del(.metadata.creationTimestamp)' "crd_$key.yaml"
               curl -sS https://raw.githubusercontent.com/prometheus-operator/prometheus-operator/v${{ inputs.version }}/example/prometheus-operator-crd/monitoring.coreos.com_"$key".yaml > "crd_$key.yaml"
+              yq 'del(.metadata.creationTimestamp)' "crd_$key.yaml"
             fi
           done
         
