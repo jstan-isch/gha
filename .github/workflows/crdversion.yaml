@@ -51,7 +51,6 @@ jobs:
             ["alertmanagers"]=${{ inputs.crd_alertmanagers }}
             ["podmonitors"]=${{ inputs.crd_podmonitors }}
             ["probes"]=${{ inputs.crd_probes }}
-            ["prometheusagents"]=${{ inputs.crd_prometheusagents }}
             ["prometheuses"]=${{ inputs.crd_prometheuses }}
             ["prometheusrules]=${{ inputs.crd_probes }}
             ["scrapeconfigs]=${{ inputs.crd_probes }}
