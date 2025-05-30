@@ -12,7 +12,9 @@
     "strict": true,
     "noFallthroughCasesInSwitch": true,
     "noImplicitReturns": true,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "noEmit": true
   },
+  "exclude": ["node_modules"]
 
 }
