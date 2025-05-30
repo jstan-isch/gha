@@ -4,6 +4,11 @@ resource "google_compute_network" "vpc_network" {
   project = "clgcporg8-021"
 }
 
+resource "service_account" "svc" {
+  name    = "tf-network"
+  project = "clgcporg8-021"
+} 
+
 resource "google_compute_instance" "vm_instance" {
   name         = "terraform-instance"
   machine_type = "f1-micro"
